@@ -89,7 +89,7 @@ const componentCSS = `
         -webkit-transform-origin: 50% 50%; transform-origin: 50% 50%;
         -webkit-transform-style: preserve-3d; transform-style: preserve-3d;
         -webkit-animation: rotatingY 10s linear infinite; animation: rotatingY 10s linear infinite;
-        border: solid 1px black;
+        border: solid 1px var(--dev-border-color, transparent);
     }
 
     .butterfly_container var {
@@ -108,15 +108,15 @@ const componentCSS = `
     }
 
     .butterfly_container var.rotate3d {
-        -webkit-transform: rotate3d(1, 0.5, 0, 70deg); transform: rotate3d(1, 0.5, 0, 70deg);border: solid 1px black;
+        -webkit-transform: rotate3d(1, 0.5, 0, 70deg); transform: rotate3d(1, 0.5, 0, 70deg);border: solid 1px var(--dev-border-color, transparent);
     }
 
     .butterfly_container var.translate3d {
-        -webkit-transform: translate3d(-300px, 0px, 0px); transform: translate3d(-300px, 0px, 0px);border: solid 1px black;
+        -webkit-transform: translate3d(-300px, 0px, 0px); transform: translate3d(-300px, 0px, 0px);border: solid 1px var(--dev-border-color, transparent);
     }
 
     .butterfly_container var.translate3d-1 {
-        -webkit-animation: fluttering 10s ease-in-out infinite; animation: fluttering 10s ease-in-out infinite;border: solid 1px black;
+        -webkit-animation: fluttering 10s ease-in-out infinite; animation: fluttering 10s ease-in-out infinite;border: solid 1px var(--dev-border-color, transparent);
     }
 
     .butterfly_container.scale_half var.scale {
@@ -179,7 +179,6 @@ const componentCSS = `
     /* } */
 `;
 
-// HTML 结构和 SVG 定义
 const componentHTML = `
     <style>${componentCSS}</style>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve"
@@ -245,77 +244,76 @@ class ButterflyAnimation extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.innerHTML = componentHTML;
-
-    // Apply dynamic styles from attributes
     this._applyDynamicStyles();
   }
 
-  // Define which attributes to observe for changes
   static get observedAttributes() {
-    // You can add more attributes here as needed for customization
     return [
       'data-top',
       'data-left',
       'data-main-animation-duration',
       'data-wing-animation-duration',
       'data-scale',
-      'data-idx' // To identify specific butterfly instances
+      'data-fill-color',
+      'data-stroke-color'
     ];
   }
 
-  // Callback for when observed attributes change
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(_, oldValue, newValue) {
     if (oldValue !== newValue) {
-      this._applyDynamicStyles(); // Reapply styles when attributes change
+      this._applyDynamicStyles();
     }
   }
 
   _applyDynamicStyles() {
     const container = this.shadowRoot.querySelector('.butterfly_container');
 
-    if (container) {
-      const top = this.getAttribute('data-top');
-      const left = this.getAttribute('data-left');
-      const mainAnimDuration = this.getAttribute('data-main-animation-duration');
-      const wingAnimDuration = this.getAttribute('data-wing-animation-duration');
-      const scaleClass = this.getAttribute('data-scale');
-      const fillColor = this.getAttribute('data-fill-color');
-      const strokeColor = this.getAttribute('data-stroke-color');
+    if (this.hasAttribute('dev')) {
+      container.style.setProperty('--dev-border-color', 'red');
+    }
 
-      if (fillColor) container.style.color = fillColor;
-      if (strokeColor) container.style.setProperty('--butterfly-stroke-color', strokeColor);
+    if (!container) return;
 
-      if (top) container.style.marginTop = top;
-      if (left) container.style.marginLeft = left;
+    const top = this.getAttribute('data-top');
+    const left = this.getAttribute('data-left');
+    const mainAnimDuration = this.getAttribute('data-main-animation-duration');
+    const wingAnimDuration = this.getAttribute('data-wing-animation-duration');
+    const scaleClass = this.getAttribute('data-scale');
+    const fillColor = this.getAttribute('data-fill-color');
+    const strokeColor = this.getAttribute('data-stroke-color');
 
-      if (mainAnimDuration) {
-        container.style.animationDuration = mainAnimDuration;
-        container.style.webkitAnimationDuration = mainAnimDuration;
-        container.style.mozAnimationDuration = mainAnimDuration;
-        container.style.msAnimationDuration = mainAnimDuration;
-        container.style.oAnimationDuration = mainAnimDuration;
-      }
+    if (fillColor) container.style.color = fillColor;
+    if (strokeColor) container.style.setProperty('--butterfly-stroke-color', strokeColor);
 
-      if (wingAnimDuration) {
-        const wings = container.querySelectorAll('.wing');
-        wings.forEach(wing => {
-          wing.style.animationDuration = wingAnimDuration;
-          wing.style.webkitAnimationDuration = wingAnimDuration;
-          wing.style.mozAnimationDuration = wingAnimDuration;
-          wing.style.msAnimationDuration = wingAnimDuration;
-          wing.style.oAnimationDuration = wingAnimDuration;
-        });
-      }
+    if (top) container.style.marginTop = top;
+    if (left) container.style.marginLeft = left;
 
-      // Apply scale class
-      container.classList.remove('scale_half', 'scale_third', 'scale_quarter'); // Clear previous scale
-      if (scaleClass === 'half') {
-        container.classList.add('scale_half');
-      } else if (scaleClass === 'third') {
-        container.classList.add('scale_third');
-      } else if (scaleClass === 'quarter') {
-        container.classList.add('scale_quarter');
-      }
+    if (mainAnimDuration) {
+      container.style.animationDuration = mainAnimDuration;
+      container.style.webkitAnimationDuration = mainAnimDuration;
+      container.style.mozAnimationDuration = mainAnimDuration;
+      container.style.msAnimationDuration = mainAnimDuration;
+      container.style.oAnimationDuration = mainAnimDuration;
+    }
+
+    if (wingAnimDuration) {
+      const wings = container.querySelectorAll('.wing');
+      wings.forEach(wing => {
+        wing.style.animationDuration = wingAnimDuration;
+        wing.style.webkitAnimationDuration = wingAnimDuration;
+        wing.style.mozAnimationDuration = wingAnimDuration;
+        wing.style.msAnimationDuration = wingAnimDuration;
+        wing.style.oAnimationDuration = wingAnimDuration;
+      });
+    }
+
+    container.classList.remove('scale_half', 'scale_third', 'scale_quarter');
+    if (scaleClass === 'half') {
+      container.classList.add('scale_half');
+    } else if (scaleClass === 'third') {
+      container.classList.add('scale_third');
+    } else if (scaleClass === 'quarter') {
+      container.classList.add('scale_quarter');
     }
   }
 }
