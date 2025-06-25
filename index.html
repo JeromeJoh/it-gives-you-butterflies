@@ -8,18 +8,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
     integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%);
+      background-size: 20px 20px;
+      background-position: center center;
+    }
+  </style>
 </head>
 
 <body>
-  <custom-butterfly-animation data-fill-color="crimson" data-stroke-color="lime" dev>
+  <!-- fill with default image pattern -->
+  <custom-butterfly-animation dev>
   </custom-butterfly-animation>
+  <!-- set fill color & stroke color -->
   <custom-butterfly-animation data-top="-150px" data-left="140px" data-main-animation-duration="5s"
-    data-wing-animation-duration="0.75s" data-fill-color="royalblue"
-    data-stroke-color="navy"></custom-butterfly-animation>
+    data-wing-animation-duration="0.75s" data-fill-color="red" data-stroke-color="black"></custom-butterfly-animation>
   <custom-butterfly-animation data-top="-10px" data-left="50px" data-main-animation-duration="5s"
     data-wing-animation-duration="0.75s" data-scale="scale_half"></custom-butterfly-animation>
   <custom-butterfly-animation data-top="20px" data-left="0px" data-main-animation-duration="28s"
-    data-wing-animation-duration="1s" data-scale="scale_half"></custom-butterfly-animation>
+    data-wing-animation-duration="0.3s" data-scale="scale_half"></custom-butterfly-animation>
   <custom-butterfly-animation data-top="100px" data-left="50px" data-main-animation-duration="13s"
     data-wing-animation-duration="1.2s" data-scale="scale_half"></custom-butterfly-animation>
   <custom-butterfly-animation data-top="150px" data-left="0px" data-main-animation-duration="30s"

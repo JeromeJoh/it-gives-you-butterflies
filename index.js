@@ -186,12 +186,12 @@ const componentHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve"
         xmlns:xml="http://www.w3.org/XML/1998/namespace" class="svg-defs" style="position: absolute; height: 0; width: 0; overflow: hidden;">
         <defs>
-            <pattern id='image' width="1" height="1" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <image href="/css/clouds_back.jpg" width="100" height="100" preserveAspectRatio="none"></image>
+            <pattern id='image' width="1" height="1" viewBox="0 0 400 300" preserveAspectRatio="none">
+                <image href="https://th.bing.com/th/id/OIP.UfnjS85q3xMHAuu7a8XXAgHaE7?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" width="400" height="300" preserveAspectRatio="none"></image>
             </pattern>
 
             <g id="shape-butterfly-1">
-                <path class="path" fill="currentColor" clip-rule="evenodd" d="M410.2,452.4c-4.7-7.7-7.1-15.7-8.9-24c-3.8-18-3.5-36.2-2.6-54.5c0.4-9.9,1.2-19.7,1.8-29.7c-3.2,12.4-5.9,24.6-9.5,36.6
+                <path class="path" clip-rule="evenodd" d="M410.2,452.4c-4.7-7.7-7.1-15.7-8.9-24c-3.8-18-3.5-36.2-2.6-54.5c0.4-9.9,1.2-19.7,1.8-29.7c-3.2,12.4-5.9,24.6-9.5,36.6
 	c-10.9,35.9-27.4,69-51.4,98c-9,10.9-18.8,20.9-30.7,28.7c-16.2,10.6-34.1,6.8-44.5-9.7c-3.3-5.3-7.1-9.9-13.4-11.7
 	c-9.5-2.8-19.4,1.2-25.3,10.7c-2.7,4.3-4.5,9.3-6.2,14.1c-3.9,11.6-8.9,22.7-18.3,30.9c-3.4,2.9-7.4,5.4-11.5,7.2
 	c-4.2,1.8-9,2.2-12.8-1.5c-3.9-3.8-3.8-8.7-2.6-13.5c1.2-4.8,4.8-8,8.7-10.7c14.7-10.1,25.2-23.4,30.6-40.3
@@ -272,7 +272,7 @@ class ButterflyAnimation extends HTMLElement {
     const container = this.shadowRoot.querySelector('.butterfly_container');
 
     if (this.hasAttribute('dev')) {
-      container.style.setProperty('--dev-border-color', 'red');
+      container.style.setProperty('--dev-border-color', 'black');
     }
 
     if (!container) return;
@@ -307,6 +307,10 @@ class ButterflyAnimation extends HTMLElement {
         wing.style.mozAnimationDuration = wingAnimDuration;
         wing.style.msAnimationDuration = wingAnimDuration;
         wing.style.oAnimationDuration = wingAnimDuration;
+      });
+      const uses = container.querySelectorAll('.wing use');
+      uses.forEach(use => {
+        use.style.fill = 'currentColor' || 'url(#image)';
       });
     }
 
