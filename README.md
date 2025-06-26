@@ -52,25 +52,25 @@ The animation's core properties can be easily customized using data- attributes 
 
 - **data-wing-animation-duration:** Sets the duration for the wing flapping animation.
 
-  - Value: A CSS time value (e.g., "0.75s", "0.2s").
+  - _Value:_ A CSS time value (e.g., "0.75s", "0.2s").
 
-  - Default: .45s
+  - _Default:_ .45s
 
 - **data-fill-color:** Sets the fill color for the inner SVG.
 
-  - Value: A CSS color value (e.g., "red", "#FF5733").
+  - _Value:_ A CSS color value (e.g., "red", "#FF5733").
 
-  - Default: (Inherits from CSS)
+  - _Default:_ (Inherits from CSS)
 
 - **data-stroke-color:** Sets the stroke (outline) color for the inner SVG.
 
-  - Value: A CSS color value (e.g., "black", "rgba(0, 0, 0, 0.5)").
+  - _Value:_ A CSS color value (e.g., "black", "rgba(0, 0, 0, 0.5)").
 
-  - Default: (Inherits from CSS)
+  - _Default:_ (Inherits from CSS)
 
 - **dev:** A boolean attribute to enable a debug mode (e.g., for showing bounding boxes).
 
-  - Value: Present or absent (e.g., <... dev>).
+  - _Value:_ Present or absent (e.g., <... dev>).
 
 ![preview](./preview.gif)
 
