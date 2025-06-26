@@ -26,8 +26,6 @@ A lightweight and customizable 3D animated butterfly component built with pure H
 
 Run this demo on a [local server](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server).
 
-### Preview
-
 ### Customization
 
 The animation's core properties can be easily customized using data- attributes on the custom-butterfly-animation element. This allows you to control the animation's timing directly from your HTML without touching the CSS.
@@ -71,6 +69,8 @@ The animation's core properties can be easily customized using data- attributes 
 - **dev:** A boolean attribute to enable a debug mode (e.g., for showing bounding boxes).
 
   - _Value:_ Present or absent (e.g., <... dev>).
+
+### Preview
 
 ![preview](./preview.gif)
 
